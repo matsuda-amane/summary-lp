@@ -4,82 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>[Geminiで出力]商用モビリティ・テレマティクス市場調査レポート 2025</title>
+    <link rel="stylesheet" href="/styles/common.css">
     <style>
-        :root {
-            --primary: #2c3e50;
-            --accent: #3498db;
-            --success: #27ae60;
-            --warning: #f39c12;
-            --danger: #c0392b;
-            --light: #ecf0f1;
-            --text: #333;
-        }
-        body {
-            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background-color: #f4f7f6;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: var(--primary);
-            border-bottom: 3px solid var(--accent);
-            padding-bottom: 20px;
-            margin-bottom: 40px;
-        }
-        h2 {
-            color: var(--primary);
-            border-left: 5px solid var(--accent);
-            padding-left: 15px;
-            margin-top: 50px;
-            margin-bottom: 20px;
-        }
-        h3 {
-            color: var(--accent);
-            margin-top: 30px;
-        }
-        .summary-box {
-            background-color: #e8f6f3;
-            border: 1px solid #a2d9ce;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 30px;
-        }
-        /* Grid Layouts */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        
-        /* Infographic Cards */
-        .card {
-            background: #fff;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            transition: transform 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+        /* このファイル専用の追加スタイル */
         .card-icon {
             font-size: 2em;
             margin-bottom: 10px;
@@ -87,89 +14,63 @@
             text-align: center;
         }
         .card-title {
-            font-weight: bold;
-            font-size: 1.1em;
+            font-weight: 600;
+            font-size: 1.1rem;
             text-align: center;
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        /* Comparison Visuals */
-        .comparison-arrow {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-            font-weight: bold;
-            color: var(--accent);
+            margin-bottom: 15px;
+            color: var(--primary-blue);
         }
         .vs-box {
             display: flex;
             justify-content: space-between;
-            background: var(--light);
+            background: var(--bg-light-gray);
             padding: 15px;
             border-radius: 50px;
             margin: 10px 0;
             align-items: center;
         }
-        .vs-left { color: var(--text); width: 45%; text-align: center; font-size: 0.9em;}
-        .vs-right { color: var(--primary); width: 45%; text-align: center; font-weight: bold; font-size: 1.1em; }
-        .vs-center { background: var(--accent); color: white; padding: 5px 10px; border-radius: 50%; font-size: 0.8em; }
-
-        /* Badge Styles */
-        .badge {
-            display: inline-block;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            color: white;
-            margin-right: 5px;
-            margin-bottom: 5px;
+        .vs-left {
+            color: var(--text-dark);
+            width: 45%;
+            text-align: center;
+            font-size: 0.9rem;
         }
-        .bg-tech { background-color: var(--accent); }
-        .bg-psych { background-color: var(--warning); }
-        .bg-value { background-color: var(--success); }
-
-        /* Benchmarking Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 0.9em;
+        .vs-right {
+            color: var(--primary-blue);
+            width: 45%;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
-        th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
+        .vs-center {
+            background: var(--accent-blue);
+            color: var(--text-light);
+            padding: 5px 10px;
+            border-radius: 50%;
+            font-size: 0.8rem;
         }
-        th {
-            background-color: var(--primary);
-            color: white;
+        .card[style*="border-top"] {
+            border-top-width: 4px !important;
         }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        /* Citation */
-        .cite {
-            font-size: 0.75em;
-            color: #7f8c8d;
-            vertical-align: super;
-            text-decoration: none;
-        }
-
         @media (max-width: 768px) {
-            .grid-2, .grid-3 { grid-template-columns: 1fr; }
-            .vs-box { flex-direction: column; border-radius: 10px; text-align: center;}
-            .vs-left, .vs-right { width: 100%; margin: 5px 0;}
+            .vs-box {
+                flex-direction: column;
+                border-radius: 10px;
+                text-align: center;
+            }
+            .vs-left,
+            .vs-right {
+                width: 100%;
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h1>商用モビリティ・テレマティクス市場<br>調査報告書要約</h1>
-    <p style="text-align: center; color: #666;">ベンチマークと行動変容を促す新たな提供価値 </p>
+    <h1 style="text-align: center;">商用モビリティ・テレマティクス市場<br>調査報告書要約</h1>
+    <p class="text-center small">ベンチマークと行動変容を促す新たな提供価値 </p>
 
     <div class="summary-box">
         <h3>📊 エグゼクティブ・サマリー</h3>
@@ -270,7 +171,7 @@
     <p>最新のデバイスは、ドライバーと管理者の心理的障壁を取り除き、行動変容を促すよう設計されています。</p>
 
     <div class="grid-2">
-        <div class="card" style="border-top: 4px solid var(--danger);">
+        <div class="card" style="border-top: 4px solid #c0392b;">
             <div class="card-title">😫 Before: 監視のストレス</div>
             <p>「常に監視されている」という不快感と、根拠の不明確なアラートへの反発。</p>
             <ul>
@@ -279,7 +180,7 @@
 <li>減点主義による意欲低下 </li>
             </ul>
         </div>
-        <div class="card" style="border-top: 4px solid var(--success);">
+        <div class="card" style="border-top: 4px solid var(--success-green);">
             <div class="card-title">🥰 After: 守護と承認</div>
             <p>AIドラレコは「監視役」から「パートナー（Co-pilot）」へ。</p>
             <ul>
@@ -321,7 +222,7 @@
     </div>
 
     <h2>5. 結論と提言</h2>
-    <div class="summary-box" style="background-color: #fdfefe; border-color: #bdc3c7;">
+    <div class="summary-box" style="background-color: #F5F5F5; border-color: #BDC3C7;">
 <p>デジタコ・ドラレコ市場の競争軸は、ハードウェアのスペックから<strong>「データがいかに人の行動を変え、組織文化を変えるか（UX）」</strong>へと移行しました 。今後の成功の鍵は以下の3点です。</p>
         <ol>
 <li><strong>「監視」から「パートナー」へのリブランディング:</strong> ユーザーの心理的障壁を取り除く 。</li>

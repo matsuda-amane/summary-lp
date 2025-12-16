@@ -1,0 +1,211 @@
+/* ============================================
+   AMANEデザインを参考にしたスタイル定義
+   ============================================ */
+
+/* カラーパレット（AMANEのサイトから抽出） */
+:root {
+  --primary-blue: #21507C;      /* メインのネイビーブルー */
+  --accent-blue: #4A90E2;       /* アクセントの明るい青 */
+  --success-green: #5CB85C;     /* 成功色の緑 */
+  --text-dark: #333333;         /* メインテキスト */
+  --text-light: #FFFFFF;        /* 白テキスト */
+  --bg-white: #FFFFFF;          /* 白背景 */
+  --bg-light-gray: #F5F5F5;     /* 薄いグレー背景 */
+  --border-gray: #E0E0E0;       /* ボーダー用グレー */
+}
+
+/* ============================================
+   ベーススタイル
+   ============================================ */
+.container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px;
+  line-height: 1.7;
+  color: var(--text-dark);
+  background-color: var(--bg-white);
+}
+
+/* ============================================
+   ヘッダー/タイトル
+   ============================================ */
+.header {
+  margin-bottom: 80px;
+  padding-bottom: 30px;
+  border-bottom: 4px solid var(--primary-blue);
+}
+
+.title {
+  color: var(--bg-white);
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+
+/* 縦線付き見出しスタイル（AMANEの特徴的なデザイン） */
+.sectionTitle {
+  position: relative;
+  color: var(--text-dark);
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 60px 0 40px 0;
+  padding-left: 20px;
+  letter-spacing: 0.02em;
+}
+
+.sectionTitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 40px;
+  background-color: var(--primary-blue);
+}
+
+/* ============================================
+   カードグリッドレイアウト
+   ============================================ */
+.cardGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 40px;
+  margin-top: 40px;
+}
+
+/* ============================================
+   カードスタイル
+   ============================================ */
+.card {
+  background: var(--bg-white);
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(33, 80, 124, 0.08);
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-gray);
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(33, 80, 124, 0.15);
+  transform: translateY(-2px);
+}
+
+.cardTitle {
+  color: var(--primary-blue);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0 0 15px 0;
+  letter-spacing: 0.02em;
+}
+
+.cardDescription {
+  color: var(--text-dark);
+  font-size: 1rem;
+  line-height: 1.8;
+  margin: 0 0 25px 0;
+  opacity: 0.9;
+}
+
+/* ============================================
+   ボタンスタイル
+   ============================================ */
+.buttonGroup {
+  display: flex;
+  gap: 15px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: inline-block;
+  padding: 12px 28px;
+  background-color: var(--primary-blue);
+  color: var(--text-light);
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.02em;
+}
+
+.button:hover {
+  background-color: var(--accent-blue);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(33, 80, 124, 0.25);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* セカンダリーボタン（必要に応じて） */
+.buttonSecondary {
+  background-color: var(--bg-white);
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
+}
+
+.buttonSecondary:hover {
+  background-color: var(--primary-blue);
+  color: var(--text-light);
+}
+
+/* ============================================
+   レスポンシブデザイン
+   ============================================ */
+@media (max-width: 768px) {
+  .container {
+    padding: 40px 20px;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+    margin: 40px 0 30px 0;
+  }
+
+  .cardGrid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .card {
+    padding: 30px 25px;
+  }
+
+  .cardTitle {
+    font-size: 1.3rem;
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+  }
+
+  .button {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 30px 15px;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .card {
+    padding: 25px 20px;
+  }
+}
