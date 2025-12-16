@@ -31,23 +31,45 @@ export default function Home() {
         }}>
           <h2 style={{ color: '#2c3e50', marginTop: 0 }}>三菱重工</h2>
           <p>デジタコ・ドラレコ競合調査レポート</p>
-          <a 
-            href="/三菱重工/デジタコ・ドラレコ競合調査.html"
-            style={{
-              display: 'inline-block',
-              marginTop: '10px',
-              padding: '10px 20px',
-              background: '#3498db',
-              color: '#fff',
-              textDecoration: 'none',
-              borderRadius: '5px',
-              transition: 'background 0.3s'
-            }}
-            onMouseOver={(e) => e.target.style.background = '#2980b9'}
-            onMouseOut={(e) => e.target.style.background = '#3498db'}
-          >
-            レポートを見る →
-          </a>
+          <div style={{ 
+            display: 'flex', 
+            gap: '10px', 
+            marginTop: '15px',
+            flexWrap: 'wrap'
+          }}>
+            <a 
+              href="/三菱重工/デジタコ・ドラレコ競合調査(Gemini).html"
+              style={{
+                display: 'inline-block',
+                padding: '10px 20px',
+                background: '#3498db',
+                color: '#fff',
+                textDecoration: 'none',
+                borderRadius: '5px',
+                transition: 'background 0.3s'
+              }}
+              onMouseOver={(e) => e.target.style.background = '#2980b9'}
+              onMouseOut={(e) => e.target.style.background = '#3498db'}
+            >
+              Gemini版を見る →
+            </a>
+            <a 
+              href="/三菱重工/デジタコ・ドラレコ競合調査(GPT).html"
+              style={{
+                display: 'inline-block',
+                padding: '10px 20px',
+                background: '#3498db',
+                color: '#fff',
+                textDecoration: 'none',
+                borderRadius: '5px',
+                transition: 'background 0.3s'
+              }}
+              onMouseOver={(e) => e.target.style.background = '#2980b9'}
+              onMouseOut={(e) => e.target.style.background = '#3498db'}
+            >
+              GPT版を見る →
+            </a>
+          </div>
         </section>
 
         <section style={{
