@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>都産技研 クラウド連携5G・IoT・ロボット開発支援事業 解説</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background: linear-gradient(135deg, #0056b3, #0088cc);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.2em;
+            font-weight: bold;
+        }
+        header p {
+            font-size: 1.1em;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* 左側：動画エリア（PCではスティッキー配置） */
+        .video-sidebar {
+            flex: 1;
+            min-width: 350px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .video-wrapper {
+            position: sticky;
+            top: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* 右側：コンテンツエリア */
+        .content-main {
+            flex: 1.5;
+            min-width: 350px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .section-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        h2 {
+            border-bottom: 3px solid #0088cc;
+            padding-bottom: 10px;
+            color: #0056b3;
+            font-size: 1.5em;
+            margin-top: 0;
+        }
+        h3 {
+            color: #444;
+            margin-top: 25px;
+            font-size: 1.2em;
+            background-color: #eef6fa;
+            padding: 8px 12px;
+            border-left: 5px solid #0088cc;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .highlight-box {
+            background-color: #fff8e1;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .tag-img {
+            display: block;
+            background-color: #ddd;
+            color: #555;
+            text-align: center;
+            padding: 40px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 2px dashed #aaa;
+            font-weight: bold;
+        }
+        .btn-apply {
+            display: block;
+            width: 100%;
+            background-color: #e63946;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .btn-apply:hover {
+            background-color: #d62839;
+        }
+        .video-time {
+            display: inline-block;
+            background-color: #e3f2fd;
+            color: #1976d2;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .video-sidebar {
+                order: -1; /* 動画を一番上に */
+                width: 100%;
+            }
+            .video-wrapper {
+                position: static;
+            }
+            .content-main {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>クラウドと連携した5G・IoT・ロボット製品開発等支援事業</h1>
+    <p>公募型共同研究（実証型）募集要項・解説ガイド</p>
+</header>
+
+<div class="container">
+    <aside class="video-sidebar">
+        <div class="video-wrapper">
+            <div class="video-container">
+                <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/YzVNSThMGBc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <p style="font-size: 0.9em; color: #666; margin-top: 10px;">
+                ※この動画の内容を右側のエリアで要約・解説しています。動画を見ながら詳細を確認してください。
+            </p>
+        </div>
+    </aside>
+
+    <main class="content-main">
+        
+        <section class="section-card">
+            <h2>1. 事業の目的と概要<span class="video-time">0:00</span></h2>
+<p>東京都立産業技術研究センター（都産技研）は、中小企業の製品開発を促進するため、クラウド・5G・IoT・ロボットを活用したフィールド実証実験を通じた製品化・事業化を支援します。</p>
+            
+                        
+            <div class="highlight-box">
+                <strong>💡 ここがポイント</strong>
+                <ul>
+<li><strong>形式：</strong>都産技研との「共同研究」として実施</li>
+<li><strong>費用負担：</strong>研究開発にかかる必要経費は都産技研が委託費として負担</li>
+<li><strong>ゴール：</strong>研究終了後、概ね6ヶ月以内の事業化を目指す</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>2. 支援規模と条件<span class="video-time">1:04</span></h2>
+            <p>大規模な実証実験をサポートするための手厚い支援体制が用意されています。</p>
+
+            
+            <h3>支援内容</h3>
+            <ul>
+<li><strong>委託費上限：</strong>1テーマにつき<strong>5,000万円</strong>（消費税・一般管理費込み）</li>
+<li><strong>研究期間：</strong>1年間</li>
+            </ul>
+
+            <h3>必須要件</h3>
+            <p>本事業は「実証型」であるため、以下の参加が必須です。</p>
+            <ul>
+<li><strong>ユーザー企業の参加：</strong>実証実験を行うフィールドを提供する企業等の参画が必須</li>
+<li><strong>中小企業が主体：</strong>実証により創出される事業は中小企業が主体となって行うこと</li>
+            </ul>
+                    </section>
+
+        <section class="section-card">
+            <h2>3. 応募できる企業・体制<span class="video-time">2:29</span></h2>
+            <p>基本的に東京都内の中小企業が対象ですが、様々なチーム体制での応募が可能です。</p>
+
+            <h3>応募対象者</h3>
+            <ul>
+<li>東京都内に登記上の事業所があり、1年以上実質的に事業を行っている中小企業</li>
+<li>日本国内に活動拠点を有すること</li>
+            </ul>
+
+            <h3>可能なチーム体制</h3>
+            <p>以下の3パターンのいずれかで応募可能です。</p>
+                        <ol>
+<li><strong>単独応募：</strong>中小企業1社による応募</li>
+<li><strong>中小企業代表の共同体：</strong>中小企業を代表とし、大学や公設試などと連携</li>
+<li><strong>大企業代表の共同体：</strong>大企業が代表の場合、中小企業の参加が必須。経費の70%以上を中小企業が利用することが条件</li>
+            </ol>
+        </section>
+
+        <section class="section-card">
+            <h2>4. 申請から採択までの流れ<span class="video-time">5:09</span></h2>
+            <p>書類審査と面接審査を経て採択が決定されます。</p>
+
+            
+            <h3>審査のポイント</h3>
+            <ul>
+<li><strong>事業化計画の明確性：</strong>具体的かつ実現性が高いか</li>
+<li><strong>実施体制：</strong>事業化を推進する基盤や体制が整っているか</li>
+<li><strong>成果報告：</strong>終了時には成果報告書、成果物、開発品、図面等の提出が必要</li>
+            </ul>
+        </section>
+
+        <section class="section-card">
+            <h2>5. 申請書作成の注意点<span class="video-time">7:43</span></h2>
+            <p>申請書の各項目には詳細な記入ルールがあります。特に以下の点に注意してください。</p>
+
+            <h3>事業説明スライド（2-2）</h3>
+            <ul>
+<li>PowerPointで作成し、ノート部分に説明文を記載すること</li>
+<li>図、表、写真を入れ、効果的に説明すること</li>
+<li>本申請書への貼り付けは不要（データで提出）</li>
+            </ul>
+
+            <h3>実証実験・体制（2-3, 2-11）</h3>
+            <ul>
+<li><strong>ユーザー企業：</strong>実施体制図に必ず記載し、役割を明記すること</li>
+<li><strong>安全対策：</strong>損害保険への加入は必須（開始前までに加入）</li>
+<li><strong>役割分担：</strong>開発だけでなく、管理・事務・営業等の役割も記載</li>
+            </ul>
+
+            <h3>資金計画（3章・4章）</h3>
+            <ul>
+<li>運用と調達の金額が一致するように記載</li>
+<li>終了後5年間の損益計画（本事業対象のみ）を検討・記載</li>
+            </ul>
+
+            <div class="highlight-box">
+                <strong>⚠️ 重要：不備による失格</strong><br>
+必要書類や電子データがない場合は審査を受けられません。提出前に十分な確認をお願いします。
+            </div>
+        </section>
+
+        <a href="#" class="btn-apply">申請書類ダウンロード・詳細はこちら<br><small>（公式サイトへ移動）</small></a>
+    </main>
+</div>
+
+</body>
+</html>
