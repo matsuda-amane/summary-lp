@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>[GPTで出力]デジタコ×ドラレコ：主要製品ベンチマーク（機能・心理/行動効果）</title>
+  <style>
+    :root{
+      --bg:#0b1020;
+      --panel:#111a33;
+      --panel2:#0f1630;
+      --text:#e8ecff;
+      --muted:#b8c1ffcc;
+      --line:#2a3570;
+      --good:#6ee7b7;
+      --warn:#fde68a;
+      --bad:#fb7185;
+      --accent:#a78bfa;
+      --accent2:#60a5fa;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1200px 800px at 10% -10%, rgba(167,139,250,.35), transparent 60%),
+        radial-gradient(900px 700px at 110% 10%, rgba(96,165,250,.25), transparent 55%),
+        radial-gradient(900px 700px at 40% 120%, rgba(110,231,183,.18), transparent 55%),
+        var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:var(--accent2); text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px; margin:0 auto; padding:28px 18px 64px}
+    .hero{
+      display:grid; gap:14px;
+      padding:26px;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(17,26,51,.85), rgba(15,22,48,.65));
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero:before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(500px 220px at 20% 0%, rgba(167,139,250,.18), transparent 60%),
+                  radial-gradient(500px 220px at 80% 0%, rgba(96,165,250,.12), transparent 60%);
+      pointer-events:none;
+    }
+    .kicker{color:var(--muted); font-size:13px; letter-spacing:.08em; text-transform:uppercase}
+    h1{margin:0; font-size:28px; line-height:1.15; position:relative}
+    .sub{margin:0; color:var(--muted); position:relative}
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:14px;
+    }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .card{
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      background: linear-gradient(180deg, rgba(17,26,51,.85), rgba(15,22,48,.7));
+      box-shadow:var(--shadow);
+      padding:18px;
+    }
+    .card h2{margin:0 0 8px; font-size:16px}
+    .card h3{margin:16px 0 8px; font-size:14px; color:var(--muted)}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .chip{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.04);
+      padding:7px 10px;
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      white-space:nowrap;
+    }
+    .metricRow{display:grid; grid-template-columns: 120px 1fr 60px; gap:10px; align-items:center; margin:10px 0}
+    .label{color:var(--muted); font-size:12px}
+    .bar{
+      height:10px; border-radius:999px;
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.06);
+      overflow:hidden;
+      position:relative;
+    }
+    .bar > i{
+      display:block; height:100%;
+      width:0%;
+      background: linear-gradient(90deg, rgba(167,139,250,.9), rgba(96,165,250,.9));
+      border-right:1px solid rgba(255,255,255,.25);
+    }
+    .val{font-size:12px; color:var(--muted); text-align:right}
+    .legend{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px; color:var(--muted); font-size:12px;}
+    .dot{display:inline-flex; align-items:center; gap:6px}
+    .dot b{display:inline-block; width:10px; height:10px; border-radius:3px; background:rgba(167,139,250,.9)}
+    .dot b.b2{background:rgba(96,165,250,.9)}
+    .dot b.b3{background:rgba(110,231,183,.9)}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+      color:var(--muted);
+      font-size:13px;
+      margin-top:10px;
+    }
+    .pill strong{color:var(--text); font-weight:700}
+    .twoCol{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+    @media (max-width: 720px){ .twoCol{grid-template-columns:1fr} }
+    .table{
+      width:100%;
+      border-collapse:separate;
+      border-spacing:0;
+      overflow:hidden;
+      border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.02);
+    }
+    .table th, .table td{
+      padding:12px 12px;
+      border-bottom:1px solid rgba(255,255,255,.06);
+      vertical-align:top;
+      font-size:13px;
+    }
+    .table th{
+      text-align:left;
+      color:var(--muted);
+      font-weight:600;
+      background:rgba(255,255,255,.03);
+    }
+    .badge{
+      display:inline-flex; align-items:center;
+      padding:3px 8px; border-radius:999px;
+      border:1px solid rgba(255,255,255,.12);
+      font-size:12px; color:var(--muted);
+      background:rgba(255,255,255,.03);
+      margin-right:6px;
+    }
+    .ok{border-color: rgba(110,231,183,.35); color: rgba(110,231,183,.95)}
+    .flow{display:grid; gap:10px; padding:14px; border-radius:14px; border:1px dashed rgba(255,255,255,.12); background:rgba(255,255,255,.02);}
+    .flowRow{display:grid; grid-template-columns: 1fr 40px 1fr 40px 1fr; gap:10px; align-items:stretch;}
+    @media (max-width: 900px){ .flowRow{grid-template-columns:1fr} .arrow{display:none} }
+    .node{border:1px solid rgba(255,255,255,.10); background:rgba(255,255,255,.03); border-radius:14px; padding:12px;}
+    .node .t{font-weight:700}
+    .node .d{color:var(--muted); font-size:12px; margin-top:6px}
+    .arrow{display:flex; align-items:center; justify-content:center; color:rgba(255,255,255,.25); font-size:22px;}
+    .foot{margin-top:16px; color:var(--muted); font-size:12px; padding-top:14px; border-top:1px solid rgba(255,255,255,.10);}
+    .small{font-size:12px; color:var(--muted)}
+    .hl{padding:2px 6px; border-radius:8px; background:rgba(167,139,250,.14); border:1px solid rgba(167,139,250,.22); color:rgba(231,232,255,.98); font-weight:700;}
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="kicker">Benchmark / Japan</div>
+      <h1>[GPTで出力]デジタコ×ドラレコの「機能」と「心理・行動効果」を、インフォグラフィックで一枚に。</h1>
+      <p class="sub">
+        主要製品を、<span class="hl">見える化 → 公平化 → 行動変容</span>の観点で整理。
+        <span class="small">（提供PDFの内容を要約・再構成）</span>
+      </p>
+      <div class="chips" aria-label="Key themes">
+        <span class="chip">📊 安全運転スコア</span>
+        <span class="chip">🛰️ GPS動態管理</span>
+        <span class="chip">🎥 映像＋イベント自動送信</span>
+        <span class="chip">🔔 音声/アラーム警告</span>
+        <span class="chip">🧾 日報・労務・帳票の自動化</span>
+        <span class="chip">🤝 信頼を損なわない運用</span>
+      </div>
+    </section>
+
+    <section class="grid">
+      <div class="card">
+        <h2>1) まず結論：導入が生む “3つの変化”</h2>
+
+        <div class="twoCol">
+          <div class="node">
+            <div class="t">① 見える化（リアルタイム化）</div>
+            <div class="d">走行・危険挙動・労務・位置情報が可視化。管理者とドライバーが同じ画面で現状を共有。</div>
+          </div>
+
+          <div class="node">
+            <div class="t">② 公平化（エビデンス化）</div>
+            <div class="d">評価・指導が「根性論」から「データ」へ。納得感が上がり、モチベ/離職にも影響しうる。</div>
+          </div>
+
+          <div class="node">
+            <div class="t">③ 行動変容（習慣化）</div>
+            <div class="d">スコア可視化＋フィードバック、ランキング/表彰などで「ゲーム化」し継続しやすくなる。</div>
+          </div>
+
+          <div class="node">
+            <div class="t">⚠️ 副作用（運用次第）</div>
+            <div class="d">「監視されている」ストレス、警報の鳴りすぎによる慣れ（無視）。導入説明と閾値調整が重要。</div>
+          </div>
+        </div>
+
+        <div class="pill">✅ 成功のコツ：<strong>公平なデータ評価</strong>と<strong>人による温かなフォロー</strong>を両立</div>
+      </div>
+
+      <div class="card">
+        <h2>2) 効果の出方（ざっくり図解）</h2>
+        <div class="flow" role="img" aria-label="Visibility-to-behavior-change flow">
+          <div class="flowRow">
+            <div class="node"><div class="t">📥 取得</div><div class="d">走行/危険挙動/映像/労務</div></div>
+            <div class="arrow">➜</div>
+            <div class="node"><div class="t">🖥️ 集約</div><div class="d">クラウド/PCへ自動送信</div></div>
+            <div class="arrow">➜</div>
+            <div class="node"><div class="t">📣 介入</div><div class="d">警告・指導・表彰・改善</div></div>
+          </div>
+
+          <div class="node">
+            <div class="t">“すぐ振り返る” が効く</div>
+            <div class="d">ヒヤリ映像は早期に本人と確認すると同種のヒヤリが減る、という運用ポイントがある。</div>
+          </div>
+        </div>
+
+        <h3>心理面の二面性（イメージ）</h3>
+        <div class="metricRow"><div class="label">安心感</div><div class="bar"><i style="width:78%"></i></div><div class="val">↑</div></div>
+        <div class="metricRow"><div class="label">緊張感</div><div class="bar"><i style="width:70%"></i></div><div class="val">↑</div></div>
+        <div class="metricRow"><div class="label">ストレス</div><div class="bar"><i style="width:42%"></i></div><div class="val">注意</div></div>
+
+        <div class="legend">
+          <span class="dot"><b></b>見える化の効果</span>
+          <span class="dot"><b class="b2"></b>フィードバックの効果</span>
+          <span class="dot"><b class="b3"></b>運用次第で副作用</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:14px;">
+      <h2>3) 主要プレイヤーを “特徴で” 俯瞰（比較カード）</h2>
+      <table class="table" aria-label="Product comparison">
+        <thead>
+          <tr>
+            <th style="width:18%;">カテゴリ</th>
+            <th style="width:28%;">代表例</th>
+            <th>強み（要約）</th>
+            <th style="width:22%;">注意点/運用の勘所</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge ok">低摩擦UI</span></td>
+            <td><strong>OCTLINK</strong></td>
+            <td>シンプル操作／運行見える化／安全運転スコア推移／GPS動態管理／レポート自動化／CSV・API連携など。</td>
+            <td>“監視”と受け取られない説明が重要（罰ではなくサポート）。</td>
+          </tr>
+          <tr>
+            <td><span class="badge ok">ハイエンド</span></td>
+            <td><strong>矢崎</strong> YDX</td>
+            <td>多カメラ・高精細・危険挙動検知・音声注意喚起・AI画像認識・危険時映像自動送信など。</td>
+            <td>警報が多すぎると逆効果。閾値調整と現場の声の反映が前提。</td>
+          </tr>
+          <tr>
+            <td><span class="badge ok">ナビ統合</span></td>
+            <td><strong>富士通</strong> DTS</td>
+            <td>ナビ一体・大画面・通信標準・多カメラ。分析/ランキング運用で指導を具体化しやすい。</td>
+            <td>機能が多いほど最初は壁。段階導入が現実的。</td>
+          </tr>
+          <tr>
+            <td><span class="badge ok">スモールスタート</span></td>
+            <td><strong>システック</strong></td>
+            <td>低価格・シンプル操作。まず試して効果確認→本格導入へ。</td>
+            <td>高度分析が必要なら上位機種/クラウド検討。</td>
+          </tr>
+          <tr>
+            <td><span class="badge ok">安全×環境</span></td>
+            <td><strong>NP</strong> e-Tacho</td>
+            <td>「安全」と「エコ」の両面で意識づけ。自己管理ツールとして捉え直すと心理が前向きに転じる。</td>
+            <td>“従わされる”→“使いこなす”へ移行させる教育/運用がカギ。</td>
+          </tr>
+          <tr>
+            <td><span class="badge ok">車両データ統合</span></td>
+            <td><strong>デンソー系</strong></td>
+            <td>車両管理全般を含む包括ソリューションとしての位置づけ。</td>
+            <td>監視要素が増えるほど抵抗も増えうる。プライバシー配慮と研修が重要。</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="foot">※上の比較は「機能網羅」ではなく、価値の出し方を軸に要約したもの。</div>
+    </section>
+
+    <section class="twoCol" style="margin-top:14px;">
+      <div class="card">
+        <h2>4) ドライバー側：心理 → 行動変容の設計ポイント</h2>
+        <h3>心理のスイッチ</h3>
+        <p>「常に見られている」は安全に寄与しうるが、「監視」はストレス。導入時に“サポート”である説明が重要。</p>
+        <h3>行動変容のレバー</h3>
+        <ul>
+          <li><strong>スコア可視化×フィードバック</strong>：改善が回りやすい</li>
+          <li><strong>表彰/評価制度へ接続</strong>：習慣化しやすい</li>
+          <li><strong>警報は“適量”</strong>：鳴りすぎは慣れ・無視につながる</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>5) 管理者側：負担軽減 × 指導の質を上げる</h2>
+        <h3>効率化</h3>
+        <p>クラウド集約→リアルタイム把握→点呼/日報負荷の軽減、異常時のアラート受信・映像確認など。</p>
+        <h3>エビデンス指導</h3>
+        <p>客観データに基づく指導は、管理者のやりやすさとドライバーの納得感を同時に上げやすい。</p>
+        <h3>運用の姿勢</h3>
+        <p>監視ツールではなくサポートツールとして扱い、信頼関係を損なわない運用が重要。</p>
+      </div>
+    </section>
+
+    <section class="card" style="margin-top:14px;">
+      <h2>6) まとめ：成果が出る会社のチェックリスト</h2>
+      <div class="twoCol">
+        <div class="node"><div class="t">✅ 導入説明</div><div class="d">監視ではなく安全運行のサポートであることを明確に</div></div>
+        <div class="node"><div class="t">✅ 公平な評価</div><div class="d">データで透明性を作り、納得感を上げる</div></div>
+        <div class="node"><div class="t">✅ 早期の振り返り</div><div class="d">ヒヤリ映像は早く共有して改善に繋げる</div></div>
+        <div class="node"><div class="t">✅ 警報チューニング</div><div class="d">鳴りすぎを防ぎ、慣れ/無視を抑える</div></div>
+        <div class="node"><div class="t">✅ データ＋人</div><div class="d">データ評価と、声掛け・フォローを両立</div></div>
+        <div class="node"><div class="t">✅ 文化として定着</div><div class="d">取り締まりではなく、サポートとして使いこなす</div></div>
+      </div>
+      <div class="foot"><strong>出典</strong>：提供PDF「日本国内のデジタルタコグラフ・ドライブレコーダー主要製品と機能・効果ベンチマーク」</div>
+    </section>
+  </div>
+</body>
+</html>
