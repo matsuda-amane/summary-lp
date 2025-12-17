@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>観光DX推進事業 補助金公募要領 | 分かりやすいまとめ</title>
+    <link rel="stylesheet" href="../styles/common.css">
+    <style>
+        /* インフォグラフィック用の追加スタイル */
+        .infographic-header {
+            background: linear-gradient(135deg, #21507C 0%, #4A90E2 50%, #5CB85C 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .infographic-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        
+        .infographic-header h1 {
+            font-size: 2.8rem;
+            margin: 0 0 15px 0;
+            border: none;
+            padding: 0;
+            color: white;
+            position: relative;
+            z-index: 1;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .infographic-header .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* 大きな数字表示 */
+        .big-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #21507C;
+            line-height: 1;
+            margin: 20px 0 10px 0;
+        }
+        
+        .big-number-label {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        /* 補助金情報カード */
+        .grant-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .grant-card {
+            background: linear-gradient(135deg, #21507C 0%, #4A90E2 100%);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(33, 80, 124, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .grant-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 32px rgba(33, 80, 124, 0.4);
+        }
+        
+        .grant-card h3 {
+            color: white;
+            border: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            font-size: 1.3rem;
+        }
+        
+        .grant-card .number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* タイムライン */
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+            margin: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #4A90E2, #5CB85C);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 22px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4A90E2;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px #4A90E2;
+        }
+        
+        .timeline-item .step-number {
+            position: absolute;
+            left: 10px;
+            top: 2px;
+            width: 40px;
+            height: 40px;
+            background: #21507C;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(33, 80, 124, 0.3);
+        }
+        
+        .timeline-item h4 {
+            color: #21507C;
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+        }
+        
+        .timeline-item .date {
+            background: #E3F2FD;
+            color: #21507C;
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        /* 事業区分カード */
+        .business-type-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .business-type-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .business-card {
+            background: white;
+            border-radius: 12px;
+            padding: 35px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-top: 5px solid;
+            transition: transform 0.3s ease;
+        }
+        
+        .business-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+        }
+        
+        .business-card.type-1 {
+            border-top-color: #4A90E2;
+        }
+        
+        .business-card.type-2 {
+            border-top-color: #5CB85C;
+        }
+        
+        .business-card h3 {
+            font-size: 1.6rem;
+            margin: 0 0 25px 0;
+            padding: 0;
+            border: none;
+        }
+        
+        .business-card.type-1 h3 {
+            color: #4A90E2;
+        }
+        
+        .business-card.type-2 h3 {
+            color: #5CB85C;
+        }
+        
+        /* ツールタグ */
+        .tool-tag {
+            display: inline-block;
+            background: #E3F2FD;
+            color: #21507C;
+            padding: 8px 16px;
+            border-radius: 20px;
+            margin: 5px 8px 5px 0;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #BBDEFB;
+        }
+        
+        .tool-tag::before {
+            content: '✓ ';
+            color: #5CB85C;
+            font-weight: 700;
+            margin-right: 5px;
+        }
+        
+        /* 要件チェックリスト */
+        .requirement-list {
+            background: #F5F5F5;
+            padding: 30px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+        
+        .requirement-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        
+        .requirement-item::before {
+            content: '✓';
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background: #5CB85C;
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        /* 日付強調ボックス */
+        .deadline-box {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin: 40px 0;
+            box-shadow: 0 8px 24px rgba(255, 107, 107, 0.3);
+        }
+        
+        .deadline-box h3 {
+            color: white;
+            border: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+            font-size: 1.8rem;
+        }
+        
+        .deadline-date {
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 15px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        /* 比較表 */
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: #21507C;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .comparison-table td {
+            padding: 20px;
+            border-bottom: 1px solid #E0E0E0;
+            background: white;
+        }
+        
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table tr:nth-child(even) td {
+            background: #F5F5F5;
+        }
+        
+        /* 注意ボックス */
+        .alert-box {
+            background: #FFF3CD;
+            border-left: 5px solid #FFC107;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        
+        .alert-box.warning {
+            background: #FFF3CD;
+            border-left-color: #FFC107;
+        }
+        
+        .alert-box.info {
+            background: #D1ECF1;
+            border-left-color: #17A2B8;
+        }
+        
+        .alert-box h4 {
+            margin: 0 0 15px 0;
+            color: #856404;
+        }
+        
+        .alert-box.info h4 {
+            color: #0C5460;
+        }
+        
+        /* アイコン風デザイン */
+        .icon-section {
+            display: flex;
+            align-items: center;
+            margin: 30px 0;
+        }
+        
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #4A90E2, #5CB85C);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-right: 20px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+        }
+        
+        /* モバイル対応 */
+        @media (max-width: 768px) {
+            .infographic-header h1 {
+                font-size: 2rem;
+            }
+            
+            .big-number {
+                font-size: 3rem;
+            }
+            
+            .grant-card .number {
+                font-size: 2.5rem;
+            }
+            
+            .deadline-date {
+                font-size: 1.5rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+            
+            .timeline-item .step-number {
+                left: 0;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ヘッダー -->
+    <header class="infographic-header">
+        <h1>観光DX推進事業</h1>
+        <p class="subtitle">補助金公募要領 - 分かりやすいまとめ</p>
+        <p style="margin-top: 20px; font-size: 1rem; opacity: 0.9;">
+            令和7年度 観光振興事業費補助金<br>
+            全国の観光地・観光産業における観光DX推進事業
+        </p>
+    </header>
+
+    <div class="container">
+        <!-- 補助金の基本情報 -->
+        <section class="section-card">
+            <h2>💰 補助金の基本情報</h2>
+            <div class="grant-info-grid">
+                <div class="grant-card">
+                    <h3>補助上限額</h3>
+                    <div class="number">1,500万円</div>
+                    <p>最大でこの金額まで補助を受けることができます</p>
+                </div>
+                <div class="grant-card" style="background: linear-gradient(135deg, #5CB85C 0%, #4CAF50 100%);">
+                    <h3>補助率</h3>
+                    <div class="number">1/2</div>
+                    <p>かかった費用の半分を補助してもらえます</p>
+                </div>
+                <div class="grant-card" style="background: linear-gradient(135deg, #FF8E53 0%, #FF6B6B 100%);">
+                    <h3>実施期間</h3>
+                    <div style="font-size: 1.8rem; font-weight: 700; margin: 20px 0;">令和7年12月19日</div>
+                    <p>この日までに事業を完了する必要があります</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 申請期間（重要） -->
+        <section class="section-card">
+            <div class="deadline-box">
+                <h3>⏰ 申請期間（必ず確認！）</h3>
+                <div style="margin: 20px 0;">
+                    <div><strong>参加申込 受付締切</strong></div>
+                    <div class="deadline-date">令和7年6月3日（火）17:00</div>
+                </div>
+                <div style="margin: 20px 0;">
+                    <div><strong>計画申請 受付締切</strong></div>
+                    <div class="deadline-date">令和7年6月6日（金）17:00</div>
+                </div>
+                <p style="margin-top: 20px; font-size: 1.1rem;">
+                    <strong>※ 締切時刻までに手続きが完了するよう、時間に余裕を持って申請してください</strong>
+                </p>
+                <a href="https://kanko-dx-hojo.go.jp" target="_blank" class="button" style="margin-top: 20px; background: white; color: #FF6B6B; font-weight: 700;">
+                    特設ウェブサイトで申請 →
+                </a>
+            </div>
+        </section>
+
+        <!-- 事業の流れ（タイムライン） -->
+        <section class="section-card">
+            <h2>📋 事業の流れ（10ステップ）</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="step-number">1</div>
+                    <h4>参加申込</h4>
+                    <span class="date">令和7年5月15日（木）13:00 ～ 6月3日（火）17:00</span>
+                    <p>特設ウェブサイトから参加申込を行います</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="step-number">2</div>
+                    <h4>計画申請（事業計画の提出）</h4>
+                    <span class="date">令和7年4月16日（水）～ 6月6日（金）17:00</span>
+                    <p>マイページにログイン後、計画申請フォームから申請します</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="step-number">3</div>
+                    <h4>計画採択</h4>
+                    <p>観光庁及び事務局で審査し、結果を通知します。<strong>この時点ではまだ補助事業に着手できません。</strong></p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="step-number">4</div>
+                    <h4>交付申請</h4>
+                    <p>採択通知後、1か月程度以内に交付申請フォームから申請します</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="step-number">5</div>
+                    <h4>交付決定 ⭐</h4>
+                    <p><strong>交付決定の通知を受けた後、補助事業を実施することができます。</strong><br>
+                    交付決定の通知前に実施した事業に係る経費は補助対象経費として認められません。</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="step-number">6</div>
+                    <h4>補助事業実施</h4>
+                    <p>交付決定を受けた事業計画に基づき、補助事業を実施します（契約・納品・発注先への支払い等が可能）</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="step-number">7</div>
+                    <h4>完了実績報告</h4>
+                    <span class="date">令和7年12月19日（金）締切</span>
+                    <p>補助事業終了後、完了実績報告フォームから報告します</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="step-number">8</div>
+                    <h4>補助額の確定</h4>
+                    <p>事務局で審査し、補助事業者が受け取ることができる補助額を確定・通知します</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="step-number">9</div>
+                    <h4>補助金請求書提出</h4>
+                    <span class="date">令和8年2月6日締切</span>
+                    <p>補助額確定の通知を受け取った後、補助金請求書を提出します</p>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="step-number">10</div>
+                    <h4>補助金交付 🎉</h4>
+                    <p>補助金請求書に基づき、事務局から銀行振込にて補助金を交付します</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2つの事業区分 -->
+        <section class="section-card">
+            <h2>🏢 2つの事業区分</h2>
+            <div class="business-type-grid">
+                <!-- 事業区分1 -->
+                <div class="business-card type-1">
+                    <h3>1. 観光地の販路拡大・マーケティング強化</h3>
+                    <div style="background: #E3F2FD; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <h4 style="color: #21507C; margin: 0 0 15px 0;">対象者</h4>
+                        <ul style="margin: 0; padding-left: 20px;">
+                            <li>地方公共団体</li>
+                            <li>観光地域づくり法人（DMO）</li>
+                            <li>観光協会等</li>
+                            <li>観光事業者等</li>
+                        </ul>
+                    </div>
+                    <div style="background: #FFF8E1; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <h4 style="color: #856404; margin: 0 0 15px 0;">補助対象事業</h4>
+                        <p style="margin: 0;"><strong>地域一体でのデータ活用</strong>に向けたデジタルツールの導入</p>
+                        <p style="margin: 10px 0 0 0; font-size: 0.9rem; color: #666;">
+                            ※ 複数の事業者が連携する地域全体の取組である必要があります
+                        </p>
+                    </div>
+                    <div class="requirement-list" style="margin-top: 20px;">
+                        <div class="requirement-item">
+                            <div>地域一体でのデータ活用に向けた具体的な計画・将来ビジョンを検討すること</div>
+                        </div>
+                        <div class="requirement-item">
+                            <div>観光事業者等が計画申請する場合は、複数の観光事業者が補助事業を実施すること</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 事業区分2 -->
+                <div class="business-card type-2">
+                    <h3>2. 観光産業の収益・生産性向上</h3>
+                    <div style="background: #E8F5E9; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <h4 style="color: #2E7D32; margin: 0 0 15px 0;">対象者</h4>
+                        <p style="margin: 0; font-weight: 600;">宿泊事業者</p>
+                        <p style="margin: 10px 0 0 0; font-size: 0.9rem; color: #666;">
+                            ※ 旅館業法の許可を受けた者（風俗営業等は対象外）
+                        </p>
+                    </div>
+                    <div style="background: #FFF8E1; padding: 20px; border-radius: 8px; margin: 20px 0;">
+                        <h4 style="color: #856404; margin: 0 0 15px 0;">補助対象事業</h4>
+                        <p style="margin: 0;"><strong>データ活用</strong>に向けたデジタルツールの導入</p>
+                    </div>
+                    <div class="requirement-list" style="margin-top: 20px;">
+                        <div class="requirement-item">
+                            <div>「宿泊業の高付加価値化のための経営ガイドライン」の登録を受けた方、または登録申請をした事業者</div>
+                        </div>
+                        <div class="requirement-item">
+                            <div>または、有価証券報告書を提出する会社で「心のバリアフリー認定制度」の認定を取得済みまたは1年以内に取得予定の方</div>
+                        </div>
+                        <div class="requirement-item">
+                            <div>データ活用に向けた具体的な計画・将来ビジョンを検討すること</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 補助対象となるデジタルツール -->
+        <section class="section-card">
+            <h2>💻 補助対象となるデジタルツール例</h2>
+            
+            <h3 style="color: #4A90E2;">観光地の販路拡大・マーケティング強化</h3>
+            <div style="margin: 25px 0;">
+                <span class="tool-tag">観光アプリ</span>
+                <span class="tool-tag">多言語翻訳・情報発信ツール</span>
+                <span class="tool-tag">デジタルマップ</span>
+                <span class="tool-tag">クーポン配布</span>
+                <span class="tool-tag">スタンプラリー</span>
+                <span class="tool-tag">デジタルチケット</span>
+                <span class="tool-tag">直販・地域サイト構築ツール</span>
+                <span class="tool-tag">キャッシュレス決済端末</span>
+                <span class="tool-tag">POSシステム</span>
+                <span class="tool-tag">CRM（顧客管理システム）</span>
+                <span class="tool-tag">DMP（データマネジメントプラットフォーム）</span>
+                <span class="tool-tag">マーケティングツール</span>
+                <span class="tool-tag">口コミ・レビュー管理ツール</span>
+                <span class="tool-tag">アクセス解析ツール</span>
+                <span class="tool-tag">データ可視化ツール</span>
+                <span class="tool-tag">レポーティングツール</span>
+                <span class="tool-tag">生成AI（サービスとして提供されているもの）</span>
+            </div>
+
+            <h3 style="color: #5CB85C; margin-top: 40px;">観光産業の収益・生産性向上</h3>
+            <div style="margin: 25px 0;">
+                <span class="tool-tag">CRM（顧客管理システム）</span>
+                <span class="tool-tag">レベニューマネジメント</span>
+                <span class="tool-tag">MA（マーケティングオートメーション）ツール</span>
+                <span class="tool-tag">自動チェックイン機</span>
+                <span class="tool-tag">スマートロック・カードロック</span>
+                <span class="tool-tag">キャッシュレス決済端末</span>
+                <span class="tool-tag">PMS（顧客予約管理システム）</span>
+                <span class="tool-tag">PMSオプション</span>
+                <span class="tool-tag">宿泊予約システム</span>
+                <span class="tool-tag">清掃管理システム</span>
+                <span class="tool-tag">在庫管理システム</span>
+                <span class="tool-tag">客室IoT（照明/空調コントロール等）</span>
+                <span class="tool-tag">エネルギー管理システム（EMS）</span>
+                <span class="tool-tag">オーダーシステム</span>
+                <span class="tool-tag">生成AI（サービスとして提供されているもの）</span>
+            </div>
+        </section>
+
+        <!-- 補助対象経費の留意事項 -->
+        <section class="section-card">
+            <h2>💡 補助対象経費の留意事項</h2>
+            
+            <div class="alert-box info">
+                <h4>✅ 補助対象になるもの</h4>
+                <ul>
+                    <li>ソフトウェア、クラウドサービス、ハードウェア等の導入に要する経費</li>
+                    <li>月額・年額で使用料金が定められている形態の製品（レンタル・リース料、サブスクリプション、クラウド利用料等）は、<strong>最大2年分</strong>が補助対象</li>
+                    <li>前払いが可能で、完了実績報告時までに支払いが完了するものに限る</li>
+                </ul>
+            </div>
+
+            <div class="alert-box warning">
+                <h4>❌ 補助対象外になるもの</h4>
+                <ul>
+                    <li>補助事業に直接関係のない経費</li>
+                    <li>事業期間外（交付決定前、完了実績報告後）に発生する経費</li>
+                    <li>経常的な経費（人件費、旅費、家賃、光熱水費、通信料、保険料等）</li>
+                    <li>故障・老朽化した設備の単なる更新に要する経費</li>
+                    <li>中古設備の購入費</li>
+                    <li>商品券等の金券</li>
+                    <li>汎用性が高く、一般使用が見込まれる物品（テレビ、事務用PC、プリンタ、文書作成ソフト、タブレット、スマホ、Wi-Fi機器等）</li>
+                    <li>同一事業に対して国から別途補助金が支給されている場合</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 重要な注意事項 -->
+        <section class="section-card">
+            <h2>⚠️ 重要な注意事項</h2>
+            
+            <div class="alert-box warning">
+                <h4>補助金交付決定の後でないと補助事業に着手できません</h4>
+                <p>交付決定前の発注・契約・支出行為は、補助対象外となります。必ず交付決定通知を受けてから事業を開始してください。</p>
+            </div>
+
+            <div class="alert-box info">
+                <h4>補助事業の内容を変更する際は事前承認が必要</h4>
+                <p>交付決定を受けた内容で実施するのが原則ですが、変更する場合は「変更交付申請書」を提出し、変更交付決定を受ける必要があります。</p>
+            </div>
+
+            <div class="alert-box warning">
+                <h4>定められた期日までに完了実績報告書の提出が必要</h4>
+                <p>令和7年12月19日（金）までに完了実績報告書を提出しないと、補助金を受け取れなくなります。</p>
+            </div>
+
+            <div class="alert-box info">
+                <h4>実際に受け取る補助金は交付決定金額より少なくなる場合があります</h4>
+                <p>完了実績報告書等の確認時に、補助対象外経費が含まれていることが判明した場合、当該支出を除いて補助金の金額を算出します。</p>
+            </div>
+
+            <div class="alert-box warning">
+                <h4>補助事業関係書類は終了後5年間保存が必要</h4>
+                <p>補助事業に関係する帳簿及び証拠書類を、補助事業の完了する日の属する年度の終了後5年間（令和13年3月31日まで）保存しなければなりません。</p>
+            </div>
+
+            <div class="alert-box info">
+                <h4>補助対象経費における消費税の扱い</h4>
+                <p>原則として補助対象経費には消費税額を含めません。ただし、免税事業者、簡易課税事業者、地方公共団体等の特定の事業者は消費税を補助対象経費に含めることができます。</p>
+            </div>
+        </section>
+
+        <!-- お問い合わせ -->
+        <section class="section-card" style="background: linear-gradient(135deg, #F5F5F5 0%, #E0E0E0 100%);">
+            <h2>📞 お問い合わせ</h2>
+            <div style="background: white; padding: 30px; border-radius: 8px; margin-top: 20px;">
+                <p><strong>観光振興事業費補助金（全国の観光地・観光産業における観光DX推進事業）事務局</strong></p>
+                <ul style="margin-top: 20px;">
+                    <li><strong>メールでのお問い合わせ：</strong><br>
+                        <a href="https://kanko-dx-hojo.go.jp/contact/" target="_blank">https://kanko-dx-hojo.go.jp/contact/</a>
+                    </li>
+                    <li style="margin-top: 15px;"><strong>電話でのお問い合わせ：</strong><br>
+                        TEL：0570-030008<br>
+                        <span style="font-size: 0.9rem; color: #666;">対応時間：9:30～17:00（土日祝日及び年末年始を除く）</span>
+                    </li>
+                    <li style="margin-top: 15px;"><strong>特設ウェブサイト：</strong><br>
+                        <a href="https://kanko-dx-hojo.go.jp" target="_blank">https://kanko-dx-hojo.go.jp</a>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- フッター -->
+        <footer style="text-align: center; padding: 40px 20px; color: #666; margin-top: 60px; border-top: 1px solid #E0E0E0;">
+            <p>本資料は公募要領を分かりやすくまとめたものです。詳細は<a href="https://kanko-dx-hojo.go.jp/wp-content/uploads/2025/05/20250515_koboyoryo_1-2.pdf" target="_blank">正式な公募要領（PDF）</a>をご確認ください。</p>
+            <p style="margin-top: 15px; font-size: 0.9rem;">
+                令和7年度 観光振興事業費補助金（全国の観光地・観光産業における観光DX推進事業）
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
