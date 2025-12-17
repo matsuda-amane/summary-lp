@@ -51,6 +51,22 @@ export default function Home() {
             </a>
           </div>
         </section>
+
+        {/* 観光DX推進事業セクション */}
+        <section className={styles.card}>
+          <h2 className={styles.cardTitle}>観光DX推進事業</h2>
+          <p className={styles.cardDescription}>
+            補助金公募要領の分かりやすいまとめ
+          </p>
+          <div className={styles.buttonGroup}>
+            <a 
+              href="/観光DX推進事業/観光DX推進事業_補助金公募要領.html"
+              className={styles.button}
+            >
+              公募要領を見る →
+            </a>
+          </div>
+        </section>
       </div>
     </div>
   );

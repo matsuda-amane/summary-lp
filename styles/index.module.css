@@ -37,7 +37,11 @@
 }
 
 .title {
-  color: var(--bg-white);
+  color: transparent;
+  background-image: linear-gradient(45deg, rgba(33, 80, 124, 1) 0%, rgba(255, 255, 255, 1) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  border-image: none;
   font-size: 2.5rem;
   font-weight: 700;
   margin: 0;
