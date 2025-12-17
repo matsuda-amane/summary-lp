@@ -22,6 +22,12 @@ export default function Home() {
           </p>
           <div className={styles.buttonGroup}>
             <a 
+              href="/三菱重工/ドライブレコーダー・デジタコ企業比較調査.html"
+              className={styles.button}
+            >
+              企業比較調査を見る →
+            </a>
+            <a 
               href="/三菱重工/デジタコ・ドラレコ競合調査(Gemini).html"
               className={styles.button}
             >
