@@ -14,36 +14,58 @@ export default function Home() {
 
       {/* コンテンツグリッド */}
       <div className={styles.cardGrid}>
-        {/* 三菱重工セクション */}
+        {/* 三菱重工①セクション */}
         <section className={styles.card}>
-          <h2 className={styles.cardTitle}>三菱重工</h2>
+          <h2 className={styles.cardTitle}>三菱重工①</h2>
           <p className={styles.cardDescription}>
             デジタコ・ドラレコ競合調査レポート
           </p>
           <div className={styles.buttonGroup}>
             <a 
-              href="/三菱重工/ドライブレコーダー・デジタコ企業比較調査.html"
+              href="/三菱重工①/ドライブレコーダー・デジタコ企業比較調査.html"
               className={styles.button}
             >
               企業比較調査を見る →
             </a>
             <a 
-              href="/三菱重工/デジタコ・ドラレコ競合調査(Gemini).html"
+              href="/三菱重工①/デジタコ・ドラレコ競合調査(Gemini).html"
               className={styles.button}
             >
               Gemini版を見る →
             </a>
             <a 
-              href="/三菱重工/デジタコ・ドラレコ競合調査(GPT).html"
+              href="/三菱重工①/デジタコ・ドラレコ競合調査(GPT).html"
               className={styles.button}
             >
               GPT版を見る →
             </a>
             <a 
-              href="/三菱重工/各サービスの機能・飽和領域の整理.html"
+              href="/三菱重工①/各サービスの機能・飽和領域の整理.html"
               className={styles.button}
             >
               各サービスの機能・飽和領域の整理を見る →
+            </a>
+          </div>
+        </section>
+
+        {/* 三菱重工②セクション */}
+        <section className={styles.card}>
+          <h2 className={styles.cardTitle}>三菱重工②</h2>
+          <p className={styles.cardDescription}>
+            トラックドライバーの実情レポート
+          </p>
+          <div className={styles.buttonGroup}>
+            <a 
+              href="/三菱重工②/トラックドライバーの実情.html"
+              className={styles.button}
+            >
+              トラックドライバーの実情を見る →
+            </a>
+            <a 
+              href="/三菱重工②/トラックドライバーの実情②.html"
+              className={styles.button}
+            >
+              トラックドライバーの実情②を見る →
             </a>
           </div>
         </section>

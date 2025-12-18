@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>岐路に立つトラックドライバー：2024年問題と物流の危機</title>
+    <link rel="stylesheet" href="/styles/common.css">
+    <style>
+        :root {
+            --warning-color: #e74c3c;
+        }
+
+        /* Cards */
+        .card {
+            border-left: 5px solid var(--accent-blue);
+        }
+
+        .card.alert {
+            border-left-color: var(--warning-color);
+        }
+
+        /* Infographic: Stats Bar */
+        .stat-box {
+            margin: 20px 0;
+        }
+        
+        .stat-label {
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .progress-bar-container {
+            background-color: #eee;
+            border-radius: 20px;
+            height: 25px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            background-color: var(--warning-color);
+            height: 100%;
+            text-align: right;
+            line-height: 25px;
+            color: white;
+            padding-right: 10px;
+            font-weight: bold;
+            width: 0%; /* Animated via CSS inline */
+            transition: width 1s ease-in-out;
+            white-space: nowrap;
+        }
+
+        .icon-box {
+            text-align: center;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .icon-box .icon {
+            font-size: 3em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .icon-box strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-blue);
+        }
+
+        /* Comparison Table Style */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background-color: var(--primary-blue);
+            color: white;
+            width: 30%;
+        }
+
+        /* Quote Box */
+        .quote-box {
+            background-color: #fff8f8;
+            border-left: 5px solid var(--warning-color);
+            padding: 20px;
+            font-style: italic;
+            font-size: 1.2em;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: "“";
+            font-size: 3em;
+            color: var(--warning-color);
+            opacity: 0.3;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        /* Footer */
+        .footer-note {
+            text-align: center;
+            font-size: 0.9em;
+            color: #7f8c8d;
+            margin-top: 40px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        
+        .citation {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            vertical-align: super;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>岐路に立つトラックドライバー</h1>
+        <p>「2024年問題」と過酷な労働環境がもたらす構造的危機</p>
+    </header>
+
+    <div class="card">
+        <h2>🚚 震源地としての「2024年問題」</h2>
+        <p>「2024年問題」は単なる法改正ではありません。これまでドライバーの残業によって隠されてきた業界の非効率性をあぶり出す「触媒」となっています。</p>
+        
+        <div style="background: #eef2f3; padding: 15px; border-radius: 8px; margin-top: 15px;">
+            <h3>制度の核心</h3>
+            <ul>
+                <li><strong>目的：</strong> 長時間労働が常態化している環境の是正</li>
+                <li><strong>規制：</strong> 年間の時間外労働の上限を<strong>960時間</strong>に制限</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="card alert">
+        <h2>📉 ドライバーのジレンマ：時間 vs 収入</h2>
+        <p>労働時間の短縮は、歩合制で働くドライバーにとって「収入減少」という死活問題に直結しています。</p>
+
+        <div class="stat-box">
+            <div class="stat-label">
+                <span>手取り収入の減少を懸念</span>
+                <span style="color:var(--warning-color)">75.5%</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 75.5%;">75.5%</div>
+            </div>
+        </div>
+
+        <div class="stat-box">
+            <div class="stat-label">
+                <span>収入減を理由に離職を検討</span>
+                <span style="color:var(--warning-color)">79.4%</span>
+            </div>
+            <div class="progress-bar-container">
+                <div class="progress-bar" style="width: 79.4%;">79.4%</div>
+            </div>
+            <p style="font-size: 0.9em; margin-top: 5px;">※「2024年問題」を機に転職を検討したドライバーのうちの割合</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>⚠️ 氷山の一角：根深い労働環境の問題</h2>
+        <p>規制の水面下には、長年放置されてきた3つの構造的な問題が存在します。</p>
+        
+        <div class="grid-3">
+            <div class="icon-box">
+                <span class="icon">⏱️</span>
+                <strong>「待つのが仕事」</strong>
+                <p>荷主の都合による長時間荷待ち。「8時だョ！全員集合」のような非効率な商慣習が横行している。</p>
+            </div>
+            <div class="icon-box">
+                <span class="icon">🚿</span>
+                <strong>インフラの欠如</strong>
+                <p>SA/PAのシャワー不足。ドライバーは低単価客と見なされ、生活に必要なアメニティへの投資が不足している。</p>
+            </div>
+            <div class="icon-box">
+                <span class="icon">🤝</span>
+                <strong>世代間ギャップ</strong>
+                <p>「稼ぎたい」旧世代と、「休みが欲しい」若手世代の価値観の乖離が、人材定着を困難にしている。</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>🛑 対症療法の限界：速度制限緩和の功罪</h2>
+        <p>政府は高速道路の最高速度引き上げ等の対策を打ち出しましたが、現場の実態とは乖離しています。</p>
+
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>政府の狙い</th>
+                    <th>現場の現実</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>効率性</strong></td>
+                    <td>輸送時間の短縮</td>
+                    <td>実勢速度はすでに平均87km/hであり、効果は限定的</td>
+                </tr>
+                <tr>
+                    <td><strong>安全性</strong></td>
+                    <td>輸送能力の維持</td>
+                    <td>動体視力の低下、停止距離の伸長により事故リスクが増大</td>
+                </tr>
+                <tr>
+                    <td><strong>負担</strong></td>
+                    <td>生産性向上</td>
+                    <td>「もっと早く運べるはず」という荷主からの過度な期待と精神的重圧</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card alert">
+        <h2>📣 現場からの悲鳴と提言</h2>
+        <p>効率化ばかりが優先される現状に対し、ドライバーは誇りを傷つけられ、無力感を募らせています。</p>
+
+        <div class="quote-box">
+            人間である運転手より荷物が優先なのか
+        </div>
+
+        <h3>真の解決に向けて</h3>
+        <p>現在の対策は末期的な病に対する鎮痛剤に過ぎません。物流システム崩壊を避けるためには、以下の根本的な改革が必要です。</p>
+        <ul>
+            <li><strong>荷主改革：</strong> 長時間待機を強いる商慣習の法的規制</li>
+            <li><strong>インフラ投資：</strong> シャワー施設など、人間らしい生活環境の整備</li>
+            <li><strong>価値の転換：</strong> 「荷物」中心から、ハンドルを握る「人」中心の物流へ</li>
+        </ul>
+    </div>
+
+    <div class="footer-note">
+        <p>Source Data: 『岐路に立つトラックドライバー』レポートより作成</p>
+    </div>
+</div>
+
+</body>
+</html>
