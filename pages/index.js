@@ -73,6 +73,22 @@ export default function Home() {
             </a>
           </div>
         </section>
+
+        {/* グリーンインフラ支援セクション */}
+        <section className={styles.card}>
+          <h2 className={styles.cardTitle}>グリーンインフラ支援</h2>
+          <p className={styles.cardDescription}>
+            グリーンインフラ支援制度事例集 2025年版
+          </p>
+          <div className={styles.buttonGroup}>
+            <a 
+              href="/グリーンインフラ支援/グリーンインフラ支援制度事例集.html"
+              className={styles.button}
+            >
+              制度事例集を見る →
+            </a>
+          </div>
+        </section>
       </div>
     </div>
   );

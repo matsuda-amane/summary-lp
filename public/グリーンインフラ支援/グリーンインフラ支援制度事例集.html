@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>グリーンインフラ支援制度集 2025 (令和7年度版) 可視化マップ</title>
+    <link rel="stylesheet" href="/styles/common.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --mlit-color: #e67e22; /* 国土交通省イメージ */
+            --env-color: #27ae60;  /* 環境省イメージ */
+            --maff-color: #8e44ad; /* 農林水産省イメージ */
+            --mix-color: #2c3e50;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-main: #333;
+            --text-light: #666;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 900;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        .source-cite {
+            font-size: 0.8rem;
+            margin-top: 5px;
+            opacity: 0.7;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 2rem;
+            color: var(--text-main);
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: #1abc9c;
+            margin: 10px auto 0;
+        }
+
+        /* Ministry Legend */
+        .ministry-legend {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        .dot {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        /* Category Sections */
+        .category-block {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .category-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+            color: #34495e;
+        }
+        .category-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Support Item Cards */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .support-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-left: 5px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            transition: all 0.3s ease;
+            cursor: pointer; /* Clickable indication */
+        }
+        .support-card:hover {
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transform: translateY(-3px);
+        }
+        .support-card::after {
+            content: '\f05a'; /* Info icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #ccc;
+            opacity: 0.5;
+            transition: opacity 0.3s;
+        }
+        .support-card:hover::after {
+            opacity: 1;
+            color: #1abc9c;
+        }
+        
+        .mlit { border-left-color: var(--mlit-color); }
+        .env { border-left-color: var(--env-color); }
+        .maff { border-left-color: var(--maff-color); }
+        .other { border-left-color: var(--mix-color); }
+
+        .program-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            padding-right: 20px;
+            line-height: 1.4;
+        }
+        .program-desc {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: auto;
+        }
+        .badge {
+            font-size: 0.75rem;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: #eee;
+            color: #555;
+        }
+        .badge-target { background: #e8f6f3; color: #16a085; }
+        .badge-type { background: #fef9e7; color: #f39c12; }
+
+        /* Modal Styles */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+        }
+        .close-btn:hover {
+            color: #333;
+        }
+        .modal-header {
+            margin-bottom: 20px;
+            border-bottom: 2px solid #1abc9c;
+            padding-bottom: 15px;
+        }
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #2c3e50;
+            margin: 0;
+        }
+        .modal-body h4 {
+            margin: 15px 0 5px;
+            color: #1abc9c;
+            font-size: 1.1rem;
+        }
+        .modal-text {
+            font-size: 1rem;
+            color: #444;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+        .modal-ministry {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+        .modal-ministry i {
+            margin-right: 10px;
+            color: #7f8c8d;
+        }
+
+        /* Highlight Section */
+        .highlight-box {
+            background: linear-gradient(to right, #fdfbfb, #ebedee);
+            border: 2px solid #1abc9c;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        .highlight-header {
+            color: #1abc9c;
+            font-weight: 900;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        footer {
+            background: #34495e;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>グリーンインフラ支援制度集</h1>
+    <p>令和7年度版 (2025年4月)</p>
+    <div class="source-cite">出典：国土交通省・農林水産省・環境省</div>
+    <p style="font-size: 0.9rem; margin-top: 15px;"><i class="fas fa-mouse-pointer"></i> 各カードをクリックすると詳細・担当省庁を確認できます</p>
+</header>
+
+<div class="container">
+
+    <div class="highlight-box">
+        <div class="highlight-header">
+            <i class="fas fa-certificate" style="font-size: 1.5rem; margin-right: 10px;"></i>
+            注目制度：優良緑地確保計画認定制度 (TSUNAG)
+        </div>
+        <p><strong>民間事業者等の「緑地確保」の取り組みを国が認定し、「見える化」する新制度。</strong></p>
+        <div style="display: flex; gap: 20px; flex-wrap: wrap; margin-top: 15px;">
+            <div style="flex: 1; min-width: 250px;">
+                <strong><i class="fas fa-check-circle"></i> メリット</strong>
+                <ul style="margin: 5px 0 0 20px; font-size: 0.9rem;">
+                    <li>金融支援（低利貸付等）が受けられる</li>
+                    <li>TNFDやGRESBなどのグローバル評価と連携</li>
+                    <li>グリーンインフラ補助金の要件緩和</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 250px;">
+                <strong><i class="fas fa-calendar-alt"></i> スケジュール (令和7年度)</strong>
+                <ul style="margin: 5px 0 0 20px; font-size: 0.9rem;">
+                    <li>申請受付：4月</li>
+                    <li>認定：9月</li>
+                </ul>
+            </div>
+        </div>
+        </div>
+
+    <div class="ministry-legend">
+        <div class="legend-item"><div class="dot" style="background: var(--mlit-color);"></div>国土交通省</div>
+        <div class="legend-item"><div class="dot" style="background: var(--env-color);"></div>環境省</div>
+        <div class="legend-item"><div class="dot" style="background: var(--maff-color);"></div>農林水産省</div>
+        <div class="legend-item"><div class="dot" style="background: var(--mix-color);"></div>民間・その他</div>
+    </div>
+
+    <div class="category-block">
+        <div class="category-header">
+            <div class="category-icon"><i class="fas fa-city"></i></div>
+            <div class="category-name">都市・ファイナンス・官民連携</div>
+        </div>
+        <div class="support-grid">
+            <div class="support-card mlit" 
+                 data-title="先導的グリーンインフラモデル形成支援"
+                 data-summary="地域でのグリーンインフラ実装の取組に民間の参入や投資を加速させることを目指し、地方公共団体を対象に専門家の派遣や先端的な技術を有する企業等とのマッチング等の支援を行います。"
+                 data-ministry="国土交通省 総合政策局 環境政策課">
+                <div class="program-title">先導的グリーンインフラモデル形成支援</div>
+                <div class="program-desc">専門家派遣や技術マッチング等による計画策定・体制構築支援。</div>
+                <div class="badges"><span class="badge badge-target">地方公共団体</span><span class="badge badge-type">ソフト支援</span></div>
+            </div>
+
+            <div class="support-card mlit"
+                 data-title="グリーンインフラ活用型都市構築支援事業"
+                 data-summary="官民連携・分野横断により、積極的・戦略的に緑や水を活かした都市空間の形成を図るグリーンインフラの整備をハード・ソフト両面から支援します。"
+                 data-ministry="国土交通省 都市局 公園緑地・景観課">
+                <div class="program-title">グリーンインフラ活用型都市構築支援事業</div>
+                <div class="program-desc">官民連携による緑地・公園・雨水貯留施設の整備を支援。</div>
+                <div class="badges"><span class="badge badge-target">自治体・民間</span><span class="badge badge-type">補助金</span></div>
+            </div>
+
+            <div class="support-card mlit"
+                 data-title="脱炭素都市再生整備事業計画認定制度"
+                 data-summary="緑地の整備や再生可能エネルギー活用等に取り組む優良な民間都市開発事業を国土交通大臣が認定し、民間都市開発推進機構による金融支援を行うことで、都市の脱炭素化を促進します。"
+                 data-ministry="国土交通省 都市局 まちづくり推進課">
+                <div class="program-title">脱炭素都市再生整備事業計画認定制度</div>
+                <div class="program-desc">緑化や再エネ活用を行う民間開発を認定し、金融支援を提供。</div>
+                <div class="badges"><span class="badge badge-target">民間事業者</span><span class="badge badge-type">認定・金融</span></div>
+            </div>
+
+            <div class="support-card mlit"
+                 data-title="メザニン支援事業"
+                 data-summary="国や市町村が定める特定の区域において行われる防災や環境に配慮した優良な民間都市開発事業に対し、調達が難しいとされる「ミドルリスク資金（メザニン資金）」を提供します。"
+                 data-ministry="国土交通省 都市局 まちづくり推進課">
+                <div class="program-title">メザニン支援事業</div>
+                <div class="program-desc">調達困難なミドルリスク資金を供給し、環境配慮型開発を支援。</div>
+                <div class="badges"><span class="badge badge-target">民間事業者</span><span class="badge badge-type">融資・出資</span></div>
+            </div>
+
+            <div class="support-card mlit"
+                 data-title="まちなかウォーカブル推進事業"
+                 data-summary="「居心地が良く歩きたくなる」まちなかづくりを推進するため、道路・公園・広場等の既存ストックの再編・利活用や滞在環境の向上に資する取組を重点的・一体的に支援します。"
+                 data-ministry="国土交通省 都市局 街路交通施設課">
+                <div class="program-title">まちなかウォーカブル推進事業</div>
+                <div class="program-desc">「居心地が良く歩きたくなる」まちなか創出のための滞在環境向上。</div>
+                <div class="badges"><span class="badge badge-target">自治体・民間</span><span class="badge badge-type">交付金・補助</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-block">
+        <div class="category-header">
+            <div class="category-icon"><i class="fas fa-water"></i></div>
+            <div class="category-name">河川・流域治水・水辺</div>
+        </div>
+        <div class="support-grid">
+            <div class="support-card mlit"
+                 data-title="かわまちづくり支援制度"
+                 data-summary="河川空間とまち空間が融合した賑わいある良好な空間形成を目指す「かわまちづくり」の取組を、ハード・ソフト両面から支援します。"
+                 data-ministry="国土交通省 水管理・国土保全局 河川環境課">
+                <div class="program-title">かわまちづくり支援制度</div>
+                <div class="program-desc">河川空間とまち空間が融合した賑わいある空間形成を支援。</div>
+                <div class="badges"><span class="badge badge-target">自治体・民間</span><span class="badge badge-type">ハード・ソフト</span></div>
+            </div>
+
+            <div class="support-card mlit"
+                 data-title="河川空間のオープン化 / RIVASITE"
+                 data-summary="河川敷地での営業活動を可能にする規制緩和。さらに「RIVASITE」では、民間事業者が河川の清掃等を行うことを条件に、占用期間の延長やエリア一体型の占用を認める社会実験を行っています。"
+                 data-ministry="国土交通省 水管理・国土保全局 水政課 / 河川環境課">
+                <div class="program-title">河川空間のオープン化 / RIVASITE</div>
+                <div class="program-desc">河川敷地での営業活動を可能にする規制緩和と社会実験。</div>
+                <div class="badges"><span class="badge badge-target">民間事業者</span><span class="badge badge-type">規制緩和</span></div>
+            </div>
+
+            <div class="support-card mlit"
+                 data-title="流域貯留浸透事業"
+                 data-summary="局地的豪雨による浸水被害軽減のため、地方公共団体または民間企業等が行う雨水貯留浸透施設の設置を支援します。"
+                 data-ministry="国土交通省 水管理・国土保全局 治水課">
+                <div class="program-title">流域貯留浸透事業</div>
+                <div class="program-desc">雨水流出抑制のための貯留浸透施設の設置を支援。</div>
+                <div class="badges"><span class="badge badge-target">自治体・民間</span><span class="badge badge-type">交付金</span></div>
+            </div>
+
+            <div class="support-card mlit"
+                 data-title="特定都市河川浸水被害対策推進事業"
+                 data-summary="特定都市河川流域において、河川整備、雨水貯留浸透施設の整備、土地利用規制と併せた二線堤の築造等を計画的・集中的に実施し、早期に治水安全度を向上させます。"
+                 data-ministry="国土交通省 水管理・国土保全局 治水課">
+                <div class="program-title">特定都市河川浸水被害対策推進事業</div>
+                <div class="program-desc">特定都市河川流域での雨水貯留施設整備等を集中的に支援。</div>
+                <div class="badges"><span class="badge badge-target">自治体・民間</span><span class="badge badge-type">補助金</span></div>
+            </div>
+
+            <div class="support-card env"
+                 data-title="良好な水環境保全・活用モデル事業"
+                 data-summary="水環境等の保全・活用による地域づくりにより、地域における関係主体の取組を促すとともに、水環境の適切な管理・良好な環境の創出を目的としたモデル事業を実施します。"
+                 data-ministry="環境省 水・大気環境局 環境管理課 環境創造室">
+                <div class="program-title">良好な水環境保全・活用モデル事業</div>
+                <div class="program-desc">水環境の保全・活用による地域づくりモデル事業。</div>
+                <div class="badges"><span class="badge badge-target">多様な主体</span><span class="badge badge-type">請負事業</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-block">
+        <div class="category-header">
+            <div class="category-icon"><i class="fas fa-leaf"></i></div>
+            <div class="category-name">自然環境・生物多様性・地域循環</div>
+        </div>
+        <div class="support-grid">
+            <div class="support-card env"
+                 data-title="自然共生サイト認定制度"
+                 data-summary="民間の取組等によって生物多様性の保全が図られている区域を認定する仕組み。認定されると、OECMとしての国際データベース登録や税制優遇、支援マッチング等のメリットがあります。"
+                 data-ministry="環境省 自然環境局 自然環境計画課 地域ネイチャーポジティブ推進室">
+                <div class="program-title">自然共生サイト認定制度</div>
+                <div class="program-desc">企業の森などを認定。OECM登録や税制優遇、支援マッチング。</div>
+                <div class="badges"><span class="badge badge-target">企業・自治体</span><span class="badge badge-type">認定・インセンティブ</span></div>
+            </div>
+
+            <div class="support-card env"
+                 data-title="地域循環共生圏づくり支援体制構築事業"
+                 data-summary="自立・分散型の持続可能な社会の実現を目指す「地域循環共生圏」づくりを行う活動団体と、その団体を支援する中間支援主体を支援・創出します。"
+                 data-ministry="環境省 大臣官房 地域政策課 地域循環共生圏推進室">
+                <div class="program-title">地域循環共生圏づくり支援</div>
+                <div class="program-desc">自立・分散型社会を目指す活動団体と中間支援主体を支援。</div>
+                <div class="badges"><span class="badge badge-target">自治体・民間</span><span class="badge badge-type">請負</span></div>
+            </div>
+
+            <div class="support-card env"
+                 data-title="生物多様性保全推進支援事業"
+                 data-summary="地域における生物多様性の保全再生に資する活動（自然共生サイトの計画作成、希少種保全、里山活動等）に対し、必要な経費の一部を交付します。"
+                 data-ministry="環境省 自然環境局 自然環境計画課 地域ネイチャーポジティブ推進室">
+                <div class="program-title">生物多様性保全推進支援事業</div>
+                <div class="program-desc">自然共生サイト計画作成や希少種保全、里山活動等を支援。</div>
+                <div class="badges"><span class="badge badge-target">多様な主体</span><span class="badge badge-type">交付金</span></div>
+            </div>
+
+            <div class="support-card env"
+                 data-title="自然環境整備交付金"
+                 data-summary="国民の保健、休養及び教化に資するとともに地域の自然環境及び生物多様性の確保に寄与することを目的として、国立公園、国定公園等の保護と適正な利用を図るため、都道府県が作成する計画に基づく整備事業等を支援します。"
+                 data-ministry="環境省 自然環境局 自然環境整備課">
+                <div class="program-title">自然環境整備交付金</div>
+                <div class="program-desc">国立・国定公園の保護と利用のための施設整備を支援。</div>
+                <div class="badges"><span class="badge badge-target">都道府県等</span><span class="badge badge-type">交付金</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-block">
+        <div class="category-header">
+            <div class="category-icon"><i class="fas fa-tree"></i></div>
+            <div class="category-name">農林水産・里山・里海</div>
+        </div>
+        <div class="support-grid">
+            <div class="support-card maff"
+                 data-title="農業農村整備事業"
+                 data-summary="農業水利施設の更新や農地の整備等において、田んぼダムやため池活用など流域治水の取組や農村景観形成を推進します。"
+                 data-ministry="農林水産省 農村振興局 設計課">
+                <div class="program-title">農業農村整備事業</div>
+                <div class="program-desc">田んぼダムやため池活用など、農業施設を活用した流域治水を推進。</div>
+                <div class="badges"><span class="badge badge-target">都道府県等</span><span class="badge badge-type">公共事業</span></div>
+            </div>
+
+            <div class="support-card maff"
+                 data-title="みどりの食料システム戦略推進交付金"
+                 data-summary="環境負荷低減と持続的発展に向けたモデル的取組の横展開や、有機農業の取組拡大、オーガニックビレッジの創出等を支援します。"
+                 data-ministry="農林水産省 大臣官房みどりの食料システム戦略グループ">
+                <div class="program-title">みどりの食料システム戦略推進交付金</div>
+                <div class="program-desc">環境負荷低減、有機農業の拡大、オーガニックビレッジ創出を支援。</div>
+                <div class="badges"><span class="badge badge-target">自治体・協議会</span><span class="badge badge-type">交付金</span></div>
+            </div>
+
+            <div class="support-card maff"
+                 data-title="多面的機能支払交付金"
+                 data-summary="農業・農村の多面的機能の維持・発揮を図るため、農業者等が地域共同で行う農地・水路等の保全管理や生態系保全活動等を支援します。"
+                 data-ministry="農林水産省 農村振興局 農地資源課">
+                <div class="program-title">多面的機能支払交付金</div>
+                <div class="program-desc">農地・水路の保全や生態系保全などの共同活動を支援。</div>
+                <div class="badges"><span class="badge badge-target">農業者団体</span><span class="badge badge-type">交付金</span></div>
+            </div>
+
+            <div class="support-card maff"
+                 data-title="森林・治山・里山林対策"
+                 data-summary="【森林整備事業】植栽、下刈り、間伐、路網整備等を実施。<br>【治山事業】荒廃地等の復旧整備や公益的機能の高い森林の整備・保全。<br>【里山林活性化交付金】里山林の整備・活用組織の育成、「半林半X」等の活動支援。"
+                 data-ministry="林野庁 森林整備部 整備課 / 治山課 / 森林利用課">
+                <div class="program-title">森林・治山・里山林対策</div>
+                <div class="program-desc">間伐、路網整備、治山ダム魚道設置、里山保全活動等を支援。</div>
+                <div class="badges"><span class="badge badge-target">林業・地域住民</span><span class="badge badge-type">事業・交付金</span></div>
+            </div>
+
+            <div class="support-card env maff"
+                 data-title="里海づくり・水産環境整備"
+                 data-summary="【戦略的「令和の里海づくり」基盤構築事業】藻場・干潟等の保全・活用による持続可能な里海づくりの基盤構築。<br>【水産環境整備事業】藻場・干潟から沖合域までの良好な生息環境空間を創出する整備を推進。"
+                 data-ministry="環境省 水・大気環境局 / 水産庁 漁港漁場整備部">
+                <div class="program-title">里海づくり・水産環境整備</div>
+                <div class="program-desc">藻場・干潟の保全再生、漁場整備と一体となった環境保全。</div>
+                <div class="badges"><span class="badge badge-target">漁協・自治体</span><span class="badge badge-type">請負・整備</span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="category-block">
+        <div class="category-header">
+            <div class="category-icon"><i class="fas fa-hands-helping"></i></div>
+            <div class="category-name">省庁以外・研究助成</div>
+        </div>
+        <div class="support-grid">
+            <div class="support-card other"
+                 data-title="河川基金助成事業"
+                 data-summary="川や流域に関する様々な調査・研究、市民団体などの川づくり活動、学校における河川・水教育の取り組みを支援します。"
+                 data-ministry="公益財団法人河川財団 基金事業部">
+                <div class="program-title">河川基金助成事業</div>
+                <div class="program-desc">研究者、川づくり団体、学校による活動・研究を助成。</div>
+                <div class="badges"><span class="badge badge-target">研究・市民・学校</span><span class="badge badge-type">助成金</span></div>
+            </div>
+
+            <div class="support-card other"
+                 data-title="地球環境基金助成事業"
+                 data-summary="民間団体(NGO/NPO)が行う環境保全活動（自然保護、森林保全、気候変動対策等）を資金面などで支援します。"
+                 data-ministry="独立行政法人環境再生保全機構 地球環境基金部">
+                <div class="program-title">地球環境基金助成事業</div>
+                <div class="program-desc">NGO/NPOによる環境保全活動（自然保護、森林、気候変動等）を支援。</div>
+                <div class="badges"><span class="badge badge-target">民間団体(NPO等)</span><span class="badge badge-type">助成金</span></div>
+            </div>
+
+            <div class="support-card other"
+                 data-title="耐震・環境不動産形成促進事業"
+                 data-summary="耐震・環境性能（省エネ等）を有する良質な不動産の形成（改修・建替え・開発事業）に対し、リスクマネーを供給し資金調達を支援します。"
+                 data-ministry="一般社団法人環境不動産普及促進機構 企画部">
+                <div class="program-title">耐震・環境不動産形成促進事業</div>
+                <div class="program-desc">耐震・環境性能（省エネ等）を有する不動産開発へのリスクマネー供給。</div>
+                <div class="badges"><span class="badge badge-target">民間事業者</span><span class="badge badge-type">出資</span></div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div id="modal" class="modal-overlay">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <div class="modal-header">
+            <h3 class="modal-title" id="modal-title">タイトル</h3>
+        </div>
+        <div class="modal-body">
+            <h4>概要</h4>
+            <p class="modal-text" id="modal-summary">ここに概要が入ります。</p>
+            <h4>担当省庁</h4>
+            <div class="modal-ministry">
+                <i class="fas fa-building"></i>
+                <span id="modal-ministry">省庁名</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>グリーンインフラ支援制度集 令和7年度版</p>
+    <p style="font-size: 0.8rem;">発行: 国土交通省 総合政策局 環境政策課 / 農林水産省 / 環境省</p>
+</footer>
+
+<script>
+    // Get modal elements
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalSummary = document.getElementById('modal-summary');
+    const modalMinistry = document.getElementById('modal-ministry');
+    const closeBtn = document.querySelector('.close-btn');
+    const cards = document.querySelectorAll('.support-card');
+
+    // Add click event to all cards
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const title = card.getAttribute('data-title');
+            const summary = card.getAttribute('data-summary');
+            const ministry = card.getAttribute('data-ministry');
+
+            modalTitle.textContent = title;
+            modalSummary.innerHTML = summary; // Using innerHTML to allow line breaks
+            modalMinistry.textContent = ministry;
+
+            modal.classList.add('active');
+        });
+    });
+
+    // Close modal
+    closeBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+    });
+
+    // Close modal when clicking outside
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('active');
+        }
+    });
+</script>
+
+</body>
+</html>
