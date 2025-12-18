@@ -39,6 +39,12 @@ export default function Home() {
             >
               GPT版を見る →
             </a>
+            <a 
+              href="/三菱重工/各サービスの機能・飽和領域の整理.html"
+              className={styles.button}
+            >
+              各サービスの機能・飽和領域の整理を見る →
+            </a>
           </div>
         </section>
 
